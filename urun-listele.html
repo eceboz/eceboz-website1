@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ürün Listele</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+<header>
+    <h1>Kayıtlı Ürünler</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="hakkimizda.html">Hakkımızda</a></li>
+            <li><a href="urunler.html">Ürünler</a></li>
+            <li><a href="kayitlar.html">Kayıtlar</a></li>
+            <li><a href="kayit-listele.html">Kayıt Listele</a></li>
+            <li><a href="urun-listele.html">Ürün Listele</a></li>
+            <li><a href="sorular.html">Sık Sorulan Sorular</a></li>
+            <li><a href="siparis.html">Sipariş</a></li>
+            <li><a href="siparis-listele.html">Sipariş Listele</a></li>
+            <li><a href="yorumlar.html">Yorumlar</a></li>
+            <li><a href="yorum-listele.html">Yorumları Listele</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="urun-bilgi">
+  <h2>Ürün Listesi</h2>
+  <p>
+    Şu anda listelenecek bir ürün bulunmamaktadır. Ürünleri görmek için önce <a href="urunler.html">Ürünler</a> sayfasından ürün ekleyiniz.
+  </p>
+  <p>
+    Ürün ekledikten sonra, bu sayfada eklediğiniz ürünler otomatik olarak görüntülenecektir.
+  </p>
+</section>
+
+    <h2>Ürün Listesi:</h2>
+    <ul id="urunListesi"></ul>
+</main>
+
+<footer>
+    <p>&copy; 2025 Butik - Tüm Hakları Saklıdır</p>
+</footer>
+
+<script>
+    const urunListesi = document.getElementById("urunListesi");
+    const urunler = JSON.parse(localStorage.getItem("urunler")) || [];
+
+    urunler.forEach((u, i) => {
+        const li = document.createElement("li");
+        li.textContent = `${i + 1}. ${u.adi} - ${u.fiyat} TL`;
+        urunListesi.appendChild(li);
+    });
+</script>
+</body>
+</html>

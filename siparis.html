@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sipariş</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+<header>
+    <h1>Sipariş Ver</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="hakkimizda.html">Hakkımızda</a></li>
+            <li><a href="urunler.html">Ürünler</a></li>
+            <li><a href="kayitlar.html">Kayıtlar</a></li>
+            <li><a href="kayit-listele.html">Kayıt Listele</a></li>
+            <li><a href="urun-listele.html">Ürün Listele</a></li>
+            <li><a href="sorular.html">Sık Sorulan Sorular</a></li>
+            <li><a href="siparis.html">Sipariş</a></li>
+            <li><a href="siparis-listele.html">Sipariş Listele</a></li>
+            <li><a href="yorumlar.html">Yorumlar</a></li>
+            <li><a href="yorum-listele.html">Yorumları Listele</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <form id="siparisForm">
+        <label>Ad Soyad: <input type="text" id="adSoyad" required></label><br>
+        <label>Ürün Adı: <input type="text" id="urunAdi" required></label><br>
+        <label>Adres: <textarea id="adres" required></textarea></label><br>
+        <label>Telefon: <input type="tel" id="telefon" required></label><br>
+        <button type="submit">Siparişi Gönder</button>
+    </form>
+</main>
+
+<footer>
+    <p>&copy; 2025 Butik - Tüm Hakları Saklıdır</p>
+</footer>
+
+<script>
+    document.getElementById("siparisForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const siparis = {
+            adSoyad: document.getElementById("adSoyad").value,
+            urunAdi: document.getElementById("urunAdi").value,
+            adres: document.getElementById("adres").value,
+            telefon: document.getElementById("telefon").value
+        };
+
+        let siparisler = JSON.parse(localStorage.getItem("siparisler")) || [];
+        siparisler.push(siparis);
+        localStorage.setItem("siparisler", JSON.stringify(siparisler));
+        alert("Siparişiniz başarıyla alındı!");
+        this.reset();
+    });
+</script>
+</body>
+</html>

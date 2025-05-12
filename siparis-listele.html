@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Siparişleri Listele</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+<header>
+    <h1>Sipariş Listesi</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="hakkimizda.html">Hakkımızda</a></li>
+            <li><a href="urunler.html">Ürünler</a></li>
+            <li><a href="kayitlar.html">Kayıtlar</a></li>
+            <li><a href="kayit-listele.html">Kayıt Listele</a></li>
+            <li><a href="urun-listele.html">Ürün Listele</a></li>
+            <li><a href="sorular.html">Sık Sorulan Sorular</a></li>
+            <li><a href="siparis.html">Sipariş</a></li>
+            <li><a href="siparis-listele.html">Sipariş Listele</a></li>
+            <li><a href="yorumlar.html">Yorumlar</a></li>
+            <li><a href="yorum-listele.html">Yorumları Listele</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h2>Tüm Siparişler</h2>
+    <div id="siparisListesi"></div>
+</main>
+
+<footer>
+    <p>&copy; 2025 Butik - Tüm Hakları Saklıdır</p>
+</footer>
+
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const siparisler = JSON.parse(localStorage.getItem("siparisler")) || [];
+        const container = document.getElementById("siparisListesi");
+
+        if (siparisler.length === 0) {
+            container.innerHTML = "<p>Henüz sipariş yok.</p>";
+            return;
+        }
+
+        siparisler.forEach((siparis, index) => {
+            const div = document.createElement("div");
+            div.className = "siparis-karti";
+            div.innerHTML = `
+                <h3>Sipariş #${index + 1}</h3>
+                <p><strong>Ad Soyad:</strong> ${siparis.adSoyad}</p>
+                <p><strong>Ürün:</strong> ${siparis.urunAdi}</p>
+                <p><strong>Adres:</strong> ${siparis.adres}</p>
+                <p><strong>Telefon:</strong> ${siparis.telefon}</p>
+                <hr>
+            `;
+            container.appendChild(div);
+        });
+    });
+</script>
+</body>
+</html>
